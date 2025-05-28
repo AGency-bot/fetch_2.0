@@ -88,16 +88,19 @@ def run_module(module_name, delay_controller):
         return False
 
 # --- Main loop ---
-def main(start_api=True):  # dodany parametr, domyślnie True
+def main(start_api=True):
     global stop_requested
     run_mode = os.getenv("RUN_MODE", "loop")
-    logger.info(f"Tryb uruchomienia: {run_mode}")
+    logger.info(f"📦 Tryb uruchomienia: {run_mode}")
+    logger.info(f"[DEBUG] stop_requested: {stop_requested}")
 
     adaptive_enabled = os.getenv("ADAPTIVE_MODE", "1") == "1"
     adaptive = AdaptiveController(min_pause=MIN_CYCLE_PAUSE, max_pause=MAX_CYCLE_PAUSE, base_pause=CYCLE_PAUSE_SECONDS)
 
     with sync_playwright() as p:
         while not stop_requested:
+            logger.info("[DEBUG] Wchodzę do głównej pętli scrapera...")
+
             browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
             context = browser.new_context()
             page = context.new_page()
@@ -138,6 +141,7 @@ def main(start_api=True):  # dodany parametr, domyślnie True
                 browser.close()
 
             if run_mode == "once" or stop_requested:
+                logger.info("[DEBUG] Zatrzymuję się: run_mode=once lub stop_requested=True")
                 break
 
             if restart_cycle:
