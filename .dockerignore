@@ -1,0 +1,28 @@
+# Ignoruj dane środowiskowe i hasła
+S3.env
+.env
+*.env
+
+# Pliki tymczasowe / edytorów
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Snapshoty i dane wygenerowane
+outputs/
+tmp/
+*.json
+
+# Systemowe
+.DS_Store
+Thumbs.db
+
+# VSC i inne IDE
+.vscode/
+.idea/
+
+# Git
+.git
+.gitignore

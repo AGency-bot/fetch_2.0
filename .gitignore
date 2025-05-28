@@ -1,0 +1,15 @@
+# środowisko i dane prywatne
+venv/
+__pycache__/
+*.pyc
+.env
+S3.env
+outputs/
+*.json
+
+# edytory
+.vscode/
+.idea/
+
+# system
+.DS_Store

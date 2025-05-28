@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: fetch-2.0-service
+    env: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    startCommand: python SERVER.py
+    autoDeploy: false
+
+    envVars:
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: AWS_DEFAULT_REGION
+        sync: false
+      - key: S3_BUCKET_NAME
+        sync: false
+      - key: AIRTABLE_PASSWORD
+        sync: false
+      - key: CYCLE_PAUSE
+        value: "10"
+      - key: MIN_CYCLE_PAUSE
+        value: "5"
+      - key: MAX_CYCLE_PAUSE
+        value: "20"
